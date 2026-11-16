@@ -35,7 +35,7 @@ const [editLaporan, setEditLaporan] = useState(null);
 
 
 
-  const endpoint = `${API_URL}/admin-khusus-sumber-87sdn83n4s`;
+  const endpoint = `${API_URL}/api/admin-khusus-sumber-87sdn83n4s`;
 
   useEffect(() => {
     loadData();

@@ -34,15 +34,16 @@ export const DashboardPage = () => {
   const location = useLocation();
     const pdfUrl = `${API_URL}/pdf/Modul_Pengoperasian_Komputer.pdf`;
     useEffect(() => {
-    axios.get(`${API_URL}/api/galeri/`)
+    axios.get(`${API_URL}/api/galeri`)
         .then((res) => {
-        console.log("Galeri data:", res.data.galeris); // pastikan ini array
-        setImageGalery(res.data.galeris);
+            const data = Array.isArray(res.data) ? res.data : res.data?.galeris ?? [];
+            console.log("Galeri data:", data);
+            setImageGalery(data);
         })
         .catch((err) => {
-        console.error("Error fetching galeri:", err);
+            console.error("Error fetching galeri:", err);
         });
-    }, []);
+}, []);
 
     useEffect(() => {
         const renderFirstPageAsImage = async () => {

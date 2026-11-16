@@ -22,6 +22,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import HeaderComponent from "./navbarComponent";
 import "./ProductStyle.css";
+import { API_URL } from "../api/api";
 
 export const ProductPage = () => {
     const location = useLocation();
@@ -39,7 +40,7 @@ export const ProductPage = () => {
         "produk umkm": "Produk UMKM",
 }
     
-    const url = "https://api.sumberplanjan.com/product_image/";
+    const url = `${API_URL}/product_image/`;
 
     useEffect(() => {
         setSearchTerm(searchText);
@@ -49,7 +50,7 @@ export const ProductPage = () => {
             setLoading(true);
             setError(null);
             
-            const response = await axios.get("https://api.sumberplanjan.com/api/products");
+            const response = await axios.get(`${API_URL}/api/products`);
             setProducts(response.data);
             setFilteredProducts(response.data);
         } catch (err) {

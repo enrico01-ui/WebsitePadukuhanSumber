@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Table, Button, Form, Modal, Tabs, Tab, Card, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import { API_URL } from '../api/api';
 
 const AdminPage = () => {
   // === UMKM STATE ===
@@ -33,7 +34,8 @@ const AdminPage = () => {
 const [editLaporan, setEditLaporan] = useState(null);
 
 
-  const endpoint = 'https://api.sumberplanjan.com/api/admin-khusus-sumber-87sdn83n4s';
+
+  const endpoint = `${API_URL}/admin-khusus-sumber-87sdn83n4s`;
 
   useEffect(() => {
     loadData();
@@ -613,7 +615,7 @@ const handleLaporanDelete = async (id) => {
                 <td>{item.nama}</td>
                 <td>
                   <img
-                    src={`https://api.sumberplanjan.com/galeri/${item.gambar}`}
+                    src={`${API_URL}/galeri/${item.gambar}`}
                     alt={item.nama}
                     style={{ maxWidth: '100px' }}
                   />
@@ -662,7 +664,7 @@ const handleLaporanDelete = async (id) => {
                 <td>{i + 1}</td>
                 <td>{item.nama_laporan}</td>
                 <td>
-                  <a href={`https://api.sumberplanjan.com/laporan/${item.file}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${API_URL}/laporan/${item.file}`} target="_blank" rel="noopener noreferrer">
                     {item.file}
                   </a>
                 </td>

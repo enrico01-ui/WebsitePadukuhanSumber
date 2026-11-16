@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Container, Spinner, Badge } from "react-bootstrap";
 import axios from "axios";
+import { API_URL } from "../api/api";
 
 export const HistorySitePages = () => {
     const [historySites, setHistorySites] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://api.sumberplanjan.com/api/sites")
+        axios.get(`${API_URL}/api/sites`)
             .then((res) => {
                 setHistorySites(res.data);
                 setLoading(false);

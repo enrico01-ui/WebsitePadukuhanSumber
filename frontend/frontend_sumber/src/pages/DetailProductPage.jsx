@@ -33,7 +33,7 @@ export const DetailProductPage = () => {
         setLoading(true);
         setError(null);
         
-        axios.get(`https://api.sumberplanjan.com/api/products/${id}`)
+        axios.get(`${API_URL}/api/products/${id}`)
             .then(res => {
                 setProduct(res.data);
                 setLoading(false);
@@ -163,7 +163,7 @@ export const DetailProductPage = () => {
             </Container>
         );
     }
-    const url = "https://api.sumberplanjan.com/product_image/";
+    const url = `${API_URL}/product_image/`;
     return (
         <>
         < HeaderComponent />

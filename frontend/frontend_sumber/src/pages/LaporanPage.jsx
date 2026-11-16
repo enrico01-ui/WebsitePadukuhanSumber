@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Button, Alert, Card, Form, Spinner } from "react-bootstrap";
 import { Download, FileText, Calendar, Search } from "lucide-react";
 import axios from "axios";
+import { API_URL } from "../api/api";
 
 export const LaporanPage = () => {
     const [laporanData, setLaporanData] = useState([]);
@@ -13,7 +14,7 @@ export const LaporanPage = () => {
     
     useEffect(() => {
     setLoading(true);
-    axios.get("https://api.sumberplanjan.com/api/laporan")
+    axios.get(`${API_URL}/api/laporan`)
         .then((response) => {
             setLaporanData(response.data); // pastikan struktur data dari API sesuai
             setFilteredData(response.data);

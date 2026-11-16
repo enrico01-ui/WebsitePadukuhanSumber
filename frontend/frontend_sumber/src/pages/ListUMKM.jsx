@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Search, MapPin, Phone, User, AlertCircle, RefreshCw, Filter } from "lucide-react";
 import HeaderComponent from "./navbarComponent";
 import axios from "axios";
+import { API_URL } from "../api/api";
 
 export const ListUmkmPage = () => {
     const location = useLocation();
@@ -57,7 +58,7 @@ export const ListUmkmPage = () => {
             setLoading(true);
             setError(null);
             
-            const response = await axios.get("https://api.sumberplanjan.com/api/umkms");
+            const response = await axios.get(`${API_URL}/api/umkms`);
             
             // Add category to each UMKM
             const umkmsWithCategory = response.data.map(umkm => ({

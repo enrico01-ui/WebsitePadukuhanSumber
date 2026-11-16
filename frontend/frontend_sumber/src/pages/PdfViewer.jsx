@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCw, Download, Maximiz
 
 import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import HeaderComponent from "./navbarComponent";
+import { API_URL } from "../api/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
@@ -16,7 +17,7 @@ export const PDFViewerPage = () => {
     const [isFullscreen, setIsFullscreen] = useState(false);
 
     // URL PDF dari Laravel
-    const fileUrl = "https://api.sumberplanjan.com/pdf/Modul_Pengoperasian_Komputer.pdf";
+    const fileUrl = `${API_URL}/pdf/Modul_Pengoperasian_Komputer.pdf`;
 
     const onDocumentLoadSuccess = useCallback(({ numPages }) => {
         setNumPages(numPages);
@@ -64,7 +65,7 @@ export const PDFViewerPage = () => {
     const rotateClockwise = () => setRotation(prev => (prev + 90) % 360);
 
     const downloadPDF = () => {
-        const downloadUrl = "https://api.sumberplanjan.com/pdf-download/Modul_Pengoperasian_Komputer.pdf";
+        const downloadUrl = `${API_URL}/pdf-download/Modul_Pengoperasian_Komputer.pdf`;
         const link = document.createElement('a');
         link.href = downloadUrl;
         link.setAttribute('download', 'Modul_Pengoperasian_Komputer.pdf');

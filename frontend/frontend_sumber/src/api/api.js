@@ -1,0 +1,1 @@
+export const API_URL = 'https://kkn.172-197-217-185.sslip.io/api';

@@ -12,6 +12,7 @@ import axios from "axios";
 import { pdfjs, Document, Page } from "react-pdf";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import {API_URL} from "../api/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
@@ -31,9 +32,9 @@ export const DashboardPage = () => {
     const [imageGalery, setImageGalery] = useState([]);
   const canvasRef = useRef(null);
   const location = useLocation();
-    const pdfUrl = "https://api.sumberplanjan.com/pdf/Modul_Pengoperasian_Komputer.pdf";
+    const pdfUrl = `${API_URL}/pdf/Modul_Pengoperasian_Komputer.pdf`;
     useEffect(() => {
-    axios.get("https://api.sumberplanjan.com/api/galeri/")
+    axios.get(`${API_URL}/api/galeri/`)
         .then((res) => {
         console.log("Galeri data:", res.data.galeris); // pastikan ini array
         setImageGalery(res.data.galeris);
@@ -137,7 +138,7 @@ export const DashboardPage = () => {
     
     const fetchUmkm = async () => {
         try {
-            const response = await axios.get("https://api.sumberplanjan.com/api/umkms");
+            const response = await axios.get(`${API_URL}/api/umkms`);
             setUmkms(response.data);
         } catch (err) {
             console.error("Error fetching UMKM data:", err);
@@ -146,7 +147,7 @@ export const DashboardPage = () => {
 
     const fetchSites = async () => {
         try {
-            const response = await axios.get("https://api.sumberplanjan.com/api/sites");
+            const response = await axios.get(`${API_URL}/api/sites`);
             setSites(response.data);
         } catch (err) {
             console.error("Error fetching Sites data:", err);
@@ -155,7 +156,7 @@ export const DashboardPage = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("https://api.sumberplanjan.com/api/products");
+            const response = await axios.get(`${API_URL}/api/products`);
             setProducts(response.data);
         } catch (err) {
             console.error("Error fetching Products data:", err);
@@ -163,7 +164,7 @@ export const DashboardPage = () => {
     };
     const fetchImageGalery = async () => {
         try{
-            const response = await axios.get("https://api.sumberplanjan.com/api/galeri");
+            const response = await axios.get(`${API_URL}/api/galeri`);
             setImageGalery(response.data);
         }catch(err){
             console.error("Error fetching Image Gallery data:", err);
@@ -172,7 +173,7 @@ export const DashboardPage = () => {
 
     const fetchPotensi = async () => {
         try {
-            const response = await axios.get("https://api.sumberplanjan.com/api/potensi");
+            const response = await axios.get(`${API_URL}/api/potensi`);
             setPotensis(response.data);
         } catch (err) {
             console.error("Error fetching Potensi data:", err);
@@ -235,7 +236,7 @@ export const DashboardPage = () => {
     // Get all images from products and sites
     const getAllImages = () => {
         const galeriImages = imageGalery.map(img => ({
-            url: `https://api.sumberplanjan.com/galeri/${img.gambar}` || "https://via.placeholder.com/400x250?text=No+Image",
+            url: `${API_URL}/galeri/${img.gambar}` || "https://via.placeholder.com/400x250?text=No+Image",
             title: img.nama || "Gambar Galeri",
             subtitle: img.description || "Deskripsi Galeri",
             type: 'gallery'
@@ -250,7 +251,7 @@ export const DashboardPage = () => {
         .hero-section {
           height: 100vh;
           background: linear-gradient(rgba(0, 30, 60, 0.5), rgba(0, 30, 60, 0.5)), 
-                      url('https://api.sumberplanjan.com/balai.png ');
+                      url('${API_URL}/balai.png ');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
@@ -417,7 +418,7 @@ export const DashboardPage = () => {
                         {potensis.length > 0 ? (
                             <Carousel indicators={true} controls={true} interval={5000}>
                                 {potensis.map((potensi, index) => { 
-                                    const imageUrl = encodeURI(`https://api.sumberplanjan.com/${potensi.gambar.trim()}`);
+                                    const imageUrl = encodeURI(`${API_URL}/${potensi.gambar.trim()}`);
 
                                     return (
                                     <Carousel.Item key={index}>
